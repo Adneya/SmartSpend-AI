@@ -161,3 +161,330 @@ h2 {
 .gold { color: #d97706; background: #fef3c7; padding: 4px 10px; border-radius: 20px; }
 .silver { color: #475569; background: #f1f5f9; padding: 4px 10px; border-radius: 20px; }
 .bronze { color: #92400e; background: #ffedd5; padding: 4px 10px; border-radius: 20px; }
+
+/* OCR Styles */
+.ocr-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.ocr-container input[type="file"] {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid var(--border-subtle);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+.ocr-container input[type="file"]:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+#ocrButton {
+    padding: 10px 16px;
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#ocrButton:hover {
+    background-color: #059669;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.ocr-loading {
+    padding: 16px;
+    background-color: #dbeafe;
+    border-left: 4px solid var(--accent-blue);
+    border-radius: 8px;
+    color: var(--accent-blue);
+    margin-top: 12px;
+    text-align: center;
+}
+
+.ocr-results {
+    padding: 16px;
+    background-color: #ecfdf5;
+    border-left: 4px solid var(--primary-green);
+    border-radius: 8px;
+    margin-top: 12px;
+}
+
+.ocr-results h4 {
+    margin-top: 0;
+    color: var(--text-header);
+    font-size: 0.95rem;
+}
+
+.extracted-text {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    color: var(--text-body);
+    border: 1px solid var(--border-subtle);
+    margin-bottom: 12px;
+}
+
+.add-to-expenses {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.add-to-expenses:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+}
+
+.ocr-error {
+    padding: 12px;
+    background-color: #fee2e2;
+    border-left: 4px solid #ef4444;
+    border-radius: 8px;
+    color: #991b1b;
+    margin-top: 12px;
+}
+
+/* OCR Tabs */
+.ocr-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--border-subtle);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--text-body);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.tab-btn.active {
+    color: var(--primary-green);
+    border-bottom-color: var(--primary-green);
+}
+
+.tab-btn:hover {
+    color: var(--primary-green);
+}
+
+.ocr-tab-content {
+    display: none;
+}
+
+.ocr-tab-content.active {
+    display: block;
+}
+
+/* Camera Container */
+.camera-container {
+    width: 100%;
+}
+
+.camera-preview {
+    width: 100%;
+    max-height: 500px;
+    border-radius: 12px;
+    background-color: #000;
+    margin-bottom: 12px;
+    display: none;
+    object-fit: cover;
+    transform: scaleX(-1); /* Mirror effect for selfie view */
+    -webkit-transform: scaleX(-1);
+}
+
+.camera-preview.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Camera Controls */
+.camera-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.camera-btn {
+    flex: 1;
+    padding: 12px 16px;
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    font-size: 0.9rem;
+}
+
+.camera-btn:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.camera-btn:active {
+    transform: translateY(0);
+}
+
+/* Captured Image Display */
+.captured-image {
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    border: 2px solid var(--border-subtle);
+    margin-bottom: 12px;
+}
+
+.captured-image img {
+    width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    object-fit: contain;
+}
+
+.process-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.process-btn:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+}
+
+/* DroidCam Styles */
+.droidcam-container {
+    width: 100%;
+}
+
+.droidcam-setup {
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    border: 2px solid var(--border-subtle);
+    margin-bottom: 16px;
+}
+
+.droidcam-setup h4 {
+    margin-top: 0;
+    color: var(--text-header);
+    font-size: 1rem;
+}
+
+.droidcam-setup p {
+    color: var(--text-body);
+    margin: 8px 0;
+    font-size: 0.9rem;
+}
+
+.droidcam-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.droidcam-input {
+    padding: 10px;
+    border: 2px solid var(--border-subtle);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.droidcam-input:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.droidcam-info {
+    background-color: #f0fdf4;
+    border-left: 4px solid var(--primary-green);
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-body);
+}
+
+.droidcam-info ol {
+    margin: 8px 0;
+    padding-left: 20px;
+}
+
+.droidcam-info li {
+    margin: 4px 0;
+}
+
+.droidcam-preview {
+    width: 100%;
+    max-height: 500px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    object-fit: contain;
+    background-color: #000;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeInDroidcam {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.droidcam-preview {
+    animation: fadeInDroidcam 0.5s ease-in;
+}

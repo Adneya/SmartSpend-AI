@@ -47,7 +47,100 @@
         <div class="feature-card">
             <h3>🧾 Receipt OCR</h3>
             <p>Upload receipts and extract expenses</p>
-            <input type="file">
+            
+            <!-- Tabs for Upload vs Camera -->
+            <div class="ocr-tabs">
+                <button class="tab-btn active" onclick="switchOCRTab('upload')">📤 Upload File</button>
+                <button class="tab-btn" onclick="switchOCRTab('camera')">📸 Camera Capture</button>
+                <button class="tab-btn" onclick="switchOCRTab('droidcam')">📱 DroidCam</button>
+            </div>
+
+            <!-- Upload Section -->
+            <div id="uploadTab" class="ocr-tab-content active">
+                <div class="ocr-container">
+                    <input type="file" id="ocrInput" accept="image/*">
+                    <button id="ocrButton" onclick="submitOCR()">Upload & Extract</button>
+                </div>
+            </div>
+
+            <!-- Camera Section -->
+            <div id="cameraTab" class="ocr-tab-content">
+                <div class="camera-container">
+                    <video id="cameraPreview" class="camera-preview" autoplay muted playsinline></video>
+                    <canvas id="captureCanvas" style="display: none;"></canvas>
+                    
+                    <div class="camera-controls">
+                        <button id="startCameraBtn" class="camera-btn" onclick="startCamera()">🎥 Start Camera</button>
+                        <button id="captureBtn" class="camera-btn" onclick="captureFrame()" style="display: none;">📷 Capture</button>
+                        <button id="stopCameraBtn" class="camera-btn" onclick="stopCamera()" style="display: none;">⏹️ Stop</button>
+                    </div>
+
+                    <div id="capturedImage" class="captured-image" style="display: none;">
+                        <img id="capturedImg" src="" alt="Captured Image">
+                        <button onclick="processCapturedImage()" class="process-btn">Extract Text from Image</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DroidCam Section -->
+            <div id="droidcamTab" class="ocr-tab-content">
+                <div class="droidcam-container">
+                    <div class="droidcam-setup">
+                        <h4>Connect to DroidCam</h4>
+                        <p>Use your mobile phone as a wireless camera</p>
+                        
+                        <div class="droidcam-inputs">
+                            <input type="text" id="droidcamIp" placeholder="Phone IP Address (e.g., 192.168.1.100)" class="droidcam-input">
+                            <input type="number" id="droidcamPort" placeholder="Port (default: 4747)" value="4747" class="droidcam-input">
+                            <button onclick="connectDroidcam()" class="camera-btn" style="width: 100%;">🔗 Connect to DroidCam</button>
+                        </div>
+                        
+                        <div id="droidcamInfo" class="droidcam-info">
+                            <p><strong>📱 Setup Instructions:</strong></p>
+                            <ol>
+                                <li>Download <strong>DroidCam</strong> app from Google Play Store (Android) or App Store (iOS)</li>
+                                <li>Install and open the DroidCam app on your phone</li>
+                                <li>Enable WiFi on your phone and computer - <strong>they must be on the SAME network</strong></li>
+                                <li>In DroidCam app, tap <strong>"Start Server"</strong> or <strong>"Start WiFi Server"</strong></li>
+                                <li>You'll see your phone's <strong>IP address</strong> displayed in the app (like 192.168.x.x or 10.x.x.x)</li>
+                                <li>Enter that IP address above and click <strong>"🔗 Connect to DroidCam"</strong></li>
+                                <li>Live video should appear below</li>
+                            </ol>
+                            <p><strong>⚙️ Troubleshooting:</strong></p>
+                            <ul>
+                                <li>❌ <strong>"Connection Failed"?</strong> → Check if DroidCam server is actually running on phone</li>
+                                <li>❌ <strong>"Wrong IP?"</strong> → Copy the exact IP from DroidCam app (not your WiFi router IP)</li>
+                                <li>❌ <strong>"Still won't connect?"</strong> → Both devices must be on same WiFi network</li>
+                                <li>❌ <strong>"Network error?"</strong> → Check phone's WiFi is connected, not mobile data</li>
+                                <li>📌 <strong>Default port:</strong> 4747 (usually correct, change only if DroidCam shows different port)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <img id="droidcamPreview" class="droidcam-preview" style="display: none;">
+                    
+                    <div id="droidcamControls" class="camera-controls" style="display: none;">
+                        <button id="captureDroidcamBtn" class="camera-btn" onclick="captureDroidcamFrame()">📷 Capture</button>
+                        <button id="disconnectDroidcamBtn" class="camera-btn" onclick="disconnectDroidcam()">🔌 Disconnect</button>
+                    </div>
+                    
+                    <div id="droidcamCapturedImage" class="captured-image" style="display: none;">
+                        <img id="droidcamCapturedImg" src="" alt="Captured Image">
+                        <button onclick="processDroidcamImage()" class="process-btn">Extract Text from Image</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Display -->
+            <div id="ocrLoading" class="ocr-loading" style="display: none;">
+                <p>Processing image...</p>
+            </div>
+            <div id="ocrResults" class="ocr-results" style="display: none;">
+                <h4>Extracted Text:</h4>
+                <div id="extractedText" class="extracted-text"></div>
+                <button onclick="addFromOCR()" class="add-to-expenses">Add to Expenses</button>
+            </div>
+            <div id="ocrError" class="ocr-error" style="display: none;"></div>
         </div>
 
         <!-- Manual Entry -->
@@ -90,6 +183,7 @@
 
 </section>
 
+<script src="/static/script.js"></script>
 </body>
 
 </html>
