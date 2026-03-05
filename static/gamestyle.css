@@ -1,0 +1,222 @@
+:root {
+    --primary-green: #22c55e;
+    --bg-slate: #f8fafc;
+    --card-white: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+}
+
+/* Base Layout */
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: var(--bg-slate);
+    color: var(--text-main);
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Header */
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 800;
+}
+
+.header p {
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+
+/* Section Layout */
+
+section {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* Saving Streak Card */
+
+.streak-card {
+    background: var(--card-white);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    border: 1px solid var(--border);
+}
+
+.streak-card h1 {
+    font-size: 2.5rem;
+    margin: 5px 0;
+}
+
+
+/* Analysis Header */
+
+.analysis-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.analysis-header select{
+    padding:6px 10px;
+    border-radius:6px;
+    border:1px solid var(--border);
+    background:white;
+    font-size:14px;
+    cursor:pointer;
+}
+
+
+/* Day Info Display */
+
+.day-info{
+    margin-bottom:15px;
+    font-size:16px;
+    font-weight:600;
+    color:#1e293b;
+}
+
+
+/* Dynamic Contribution Grid */
+
+.dynamic-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(12px,12px));
+    gap:4px;
+    padding:20px;
+    background:var(--card-white);
+    border-radius:16px;
+    border:1px solid var(--border);
+    box-shadow:0 4px 6px rgba(0,0,0,0.05);
+}
+
+
+/* Individual Square */
+
+.square {
+    width:12px;
+    height:12px;
+    background:#e2e8f0;
+    border-radius:2px;
+    cursor:pointer;
+    position:relative;
+    transition:transform 0.1s ease;
+}
+
+.square:hover{
+    transform:scale(1.3);
+    z-index:10;
+}
+
+
+/* Default success color */
+
+.square.active{
+    background-color: var(--primary-green);
+}
+
+
+/* Selected square highlight */
+
+.square.selected{
+    outline:2px solid #16a34a;
+}
+
+
+/* Tooltip */
+
+.square:hover::after{
+    content: attr(data-title);
+    position:absolute;
+    bottom:150%;
+    left:50%;
+    transform:translateX(-50%);
+    background:#1e293b;
+    color:white;
+    padding:6px 10px;
+    border-radius:6px;
+    font-size:11px;
+    white-space:nowrap;
+    pointer-events:none;
+    box-shadow:0 10px 15px rgba(0,0,0,0.3);
+}
+
+
+/* Heatmap intensity levels (GitHub style) */
+
+.level1{ background:#bbf7d0; }
+
+.level2{ background:#4ade80; }
+
+.level3{ background:#22c55e; }
+
+.level4{ background:#15803d; }
+
+
+/* Medal Section */
+
+.medals{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:15px;
+}
+
+.medal-card{
+    background:var(--card-white);
+    padding:20px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    box-shadow:0 2px 4px rgba(0,0,0,0.05);
+}
+
+.medal-card h3{
+    margin:0 0 10px 0;
+    font-size:1rem;
+}
+
+.medal-card p{
+    margin:0;
+    font-weight:600;
+    font-size:0.9rem;
+}
+
+
+/* Medal Colors */
+
+.gold{
+    color:#d97706;
+}
+
+.silver{
+    color:#64748b;
+}
+
+.bronze{
+    color:#b45309;
+}

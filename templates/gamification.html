@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SmartSpend Achievements</title>
+    <link rel="stylesheet" href="/static/gamestyle.css">
+</head>
+
+<body>
+
+<header class="header">
+    <h1>SmartSpend Achievements</h1>
+    <p>Track your financial discipline</p>
+</header>
+
+
+<!-- Saving Streak -->
+
+<section class="streak-section">
+
+    <h2>🔥 Saving Streak</h2>
+
+    <div class="streak-card">
+        <h1>5 Day Streak</h1>
+        <p>You saved money 5 days in a row</p>
+    </div>
+
+</section>
+<section class="grid-section">
+
+    <div class="analysis-header">
+    
+    <h2>📊 Spending Streak</h2>
+    
+    <select id="viewSelector" onchange="changeView()">
+    <option value="weekly">Weekly</option>
+    <option value="monthly" selected>Monthly</option>
+    <option value="yearly">Yearly</option>
+    </select>
+    
+    </div>
+   
+    <div id="gridContainer" class="dynamic-grid"></div>
+    
+    </section>
+
+
+<!-- Medals -->
+
+<section class="medal-section">
+
+<h2>Goal Medals</h2>
+
+<div class="medals">
+
+    <div class="medal-card">
+        <h3>Buy Running Shoes</h3>
+        <p class="gold">🥇 Gold Medal</p>
+    </div>
+
+    <div class="medal-card">
+        <h3>Save ₹2000</h3>
+        <p class="silver">🥈 Silver Medal</p>
+    </div>
+
+    <div class="medal-card">
+        <h3>No Swiggy Week</h3>
+        <p class="bronze">🥉 Bronze Medal</p>
+    </div>
+
+</div>
+
+</section>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function(){
+        changeView()
+    })
+    
+    function changeView(){
+    
+        const view = document.getElementById("viewSelector").value
+        const container = document.getElementById("gridContainer")
+    
+        container.innerHTML = ""
+    
+        let days = 0
+        const today = new Date()
+    
+        if(view === "weekly"){
+            days = 7
+        }
+    
+        else if(view === "monthly"){
+            const year = today.getFullYear()
+            const month = today.getMonth()
+            days = new Date(year, month + 1, 0).getDate()
+        }
+    
+        else{
+            days = 365
+        }
+    
+        for(let i=0;i<days;i++){
+    
+            const square = document.createElement("div")
+            square.classList.add("square")
+    
+            const date = new Date()
+            date.setDate(today.getDate() - (days - i))
+    
+            const formattedDate = date.toLocaleDateString("en-US",{
+                month:"short",
+                day:"2-digit"
+            })
+    
+            const amount = Math.floor(Math.random()*500)
+    
+            if(amount < 200){
+                square.classList.add("active")
+            }
+    
+            square.setAttribute(
+                "data-title",
+                formattedDate + " ₹" + amount
+            )
+    
+            container.appendChild(square)
+    
+        }
+    
+    }
+    
+    </script>
+
+</body>
+</html>

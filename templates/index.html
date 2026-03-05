@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SmartSpend AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="header">
+    <h1>SmartSpend AI</h1>
+    <p>AI Powered Smart Expense Management</p>
+</header>
+
+
+<!-- Balance Section -->
+<section class="balance-section">
+
+    <div class="balance-card">
+        <h2>Current Balance</h2>
+        <h1 id="balance">₹25,000</h1>
+        <p>Updated Today</p>
+
+        <button class="balance-btn">Check Balance</button>
+    </div>
+
+</section>
+
+
+<!-- Expense Tracking -->
+<section class="expense-section">
+
+    <h2>Expense Tracking</h2>
+
+    <div class="features">
+
+        <!-- SMS Parsing -->
+        <div class="feature-card">
+            <h3>📩 SMS Parsing</h3>
+            <p>Automatically read bank transaction SMS</p>
+            <button>Connect SMS</button>
+        </div>
+
+        <!-- Receipt OCR -->
+        <div class="feature-card">
+            <h3>🧾 Receipt OCR</h3>
+            <p>Upload receipts and extract expenses</p>
+            <input type="file">
+        </div>
+
+        <!-- Manual Entry -->
+        <div class="feature-card">
+            <h3>✍️ Manual Entry</h3>
+            <p>Add expense manually</p>
+
+            <input type="text" placeholder="Amount">
+            <input type="text" placeholder="Category">
+
+            <button>Add Expense</button>
+        </div>
+
+        <!-- Split Payments -->
+        <div class="feature-card">
+            <h3>👥 Split Payments</h3>
+            <p>Split bills with friends (Splitwise style)</p>
+
+            <input type="text" placeholder="Total Amount">
+            <input type="text" placeholder="Number of People">
+
+            <button>Split Bill</button>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Gamification Section -->
+<section class="gamification">
+
+    <h2>SmartSpend Achievements</h2>
+
+    <p>Track your financial discipline with streaks, badges, and medals.</p>
+
+    <a href="/gamification">
+        <button class="achievement-btn">View Achievements</button>
+    </a>
+
+</section>
+
+</body>
+
+</html>

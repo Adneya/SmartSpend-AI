@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Financial Challenges</title>
+<link rel="stylesheet" href="/static/gamestyle.css">
+
+<style>
+
+.challenge-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.challenge-card{
+background:white;
+padding:20px;
+border-radius:12px;
+border:1px solid #e2e8f0;
+box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
+
+.challenge-card h3{
+margin:0 0 10px 0;
+}
+
+.challenge-card p{
+font-size:14px;
+color:#64748b;
+}
+
+.challenge-card button{
+margin-top:10px;
+padding:8px 14px;
+border:none;
+background:#22c55e;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+.progress{
+margin-top:10px;
+background:#e2e8f0;
+border-radius:6px;
+height:8px;
+}
+
+.progress-bar{
+height:8px;
+background:#22c55e;
+border-radius:6px;
+width:0%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+<h1>Financial Challenges</h1>
+<p>Improve your spending habits</p>
+</header>
+
+<section>
+
+<h2>Available Challenges</h2>
+
+<div class="challenge-grid">
+
+<div class="challenge-card">
+<h3>No Online Shopping</h3>
+<p>Avoid Amazon / Flipkart purchases for 7 days</p>
+<button onclick="startChallenge('shopping')">Start</button>
+</div>
+
+<div class="challenge-card">
+<h3>Cook At Home</h3>
+<p>No Swiggy or Zomato orders this week</p>
+<button onclick="startChallenge('food')">Start</button>
+</div>
+
+<div class="challenge-card">
+<h3>Zero Late Night Orders</h3>
+<p>No food orders after 10 PM</p>
+<button onclick="startChallenge('latenight')">Start</button>
+</div>
+
+<div class="challenge-card">
+<h3>Save ₹2000</h3>
+<p>Save ₹2000 this month</p>
+<button onclick="startChallenge('saving')">Start</button>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Active Challenges</h2>
+
+<div id="activeChallenges" class="challenge-grid"></div>
+
+</section>
+
+<script>
+
+let activeChallenges=[]
+
+
+function startChallenge(type){
+
+let challenge={
+type:type,
+progress:Math.floor(Math.random()*100)
+}
+
+activeChallenges.push(challenge)
+
+renderChallenges()
+
+}
+
+
+function renderChallenges(){
+
+let container=document.getElementById("activeChallenges")
+
+container.innerHTML=""
+
+activeChallenges.forEach(c=>{
+
+let div=document.createElement("div")
+
+div.className="challenge-card"
+
+div.innerHTML=`
+<h3>${formatName(c.type)}</h3>
+
+<p>Progress</p>
+
+<div class="progress">
+<div class="progress-bar" style="width:${c.progress}%"></div>
+</div>
+
+<p>${c.progress}% completed</p>
+`
+
+container.appendChild(div)
+
+})
+
+}
+
+
+function formatName(type){
+
+if(type=="shopping") return "No Online Shopping"
+if(type=="food") return "Cook At Home"
+if(type=="latenight") return "Zero Late Night Orders"
+if(type=="saving") return "Save ₹2000"
+
+return type
+
+}
+
+</script>
+
+</body>
+</html>
